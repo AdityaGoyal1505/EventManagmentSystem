@@ -1,0 +1,82 @@
+:root {
+  /* Layout */
+  --why-max-width: 1200px;
+  --why-card-padding: 26px;
+  --why-card-radius: 22px;
+
+  /* Colors */
+  --why-bg: #ffffff;
+  --why-card-bg: rgba(255, 255, 255, 0.6);
+  --why-border: rgba(0, 0, 0, 0.08);
+  --why-text: #333;
+  --why-subtext: #555;
+  --why-icon-color: #FF6B6B;
+
+  /* Effects */
+  --why-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  --why-hover-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  --why-scale: 1.03;
+}
+
+.why-section {
+  max-width: var(--why-max-width);
+  margin: 0 auto;
+  padding: 50px 30px;
+  text-align: center;
+}
+
+.why-heading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: var(--why-text);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.why-card {
+  background: var(--why-card-bg);
+  border: 1px solid var(--why-border);
+  padding: var(--why-card-padding);
+  border-radius: var(--why-card-radius);
+  text-align: center;
+  box-shadow: var(--why-shadow);
+  transition: all 0.25s ease-in-out;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+}
+
+.why-card:hover {
+  transform: scale(var(--why-scale));
+  box-shadow: var(--why-hover-shadow);
+}
+
+.why-icon {
+  font-size: 30px;
+  color: var(--why-icon-color);
+  margin-top: -50px;
+  margin-bottom: 18px;
+  background-color: var(--why-bg);
+  padding: 20px;
+  border-radius:50%;
+}
+
+.why-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--why-text);
+  margin-bottom: 10px;
+}
+
+.why-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--why-subtext);
+}

@@ -1,0 +1,160 @@
+.admin-page {
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.primary-btn {
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  background: #ff5252;
+}
+
+/* Table */
+
+.table-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 16px 18px;
+  text-align: left;
+}
+
+.admin-table thead {
+  background: #f8f9fc;
+}
+
+.admin-table th {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
+
+.admin-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+  background: #fafbff;
+}
+
+
+.role-select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  background: #fff;
+}
+
+.role-select.admin {
+  background: rgba(255, 99, 99, 0.1);
+  color: #ff6363;
+  border-color: #ffb3b3;
+}
+
+.role-select.organizer {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4f46e5;
+  border-color: #c7d2fe;
+}
+
+.role-select:hover {
+  border-color: #ff6363;
+}
+
+
+/* Status
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 5px;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #e7f8ef;
+  color: #1e9e5a;
+}
+
+.status-badge.blocked {
+  background: #fdeaea;
+  color: #d64545;
+} */
+
+/* Actions */
+
+.actions-col {
+  width: 180px;
+}
+
+.row-actions {
+  display: flex;
+  gap: 10px;
+  opacity: 1;
+  transform: translateX(5px);
+  transition: all 0.2s ease;
+}
+
+.admin-table tbody tr:hover .row-actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.action-btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.action-btn.edit {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.action-btn.edit:hover {
+  background: #e0e7ff;
+}
+
+.action-btn.delete {
+  background: #ffecec;
+  color: #e11d48;
+}
+
+.action-btn.delete:hover {
+  background: #ffd6dc;
+}

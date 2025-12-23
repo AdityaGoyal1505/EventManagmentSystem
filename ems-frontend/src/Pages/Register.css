@@ -1,0 +1,110 @@
+body{
+  background-color: #F7F9FC;
+}
+
+/* ---------- PAGE CENTERING ---------- */
+.login-wrapper {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ---------- CARD ---------- */
+.login-card {
+    width: 600px;
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- TITLE ---------- */
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #1b2653;
+    text-align: center;
+}
+
+/* ---------- INPUT GROUP ---------- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #111111;
+}
+
+/* ---------- INPUT FIELDS ---------- */
+.input-field,
+.select-field {
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1.6px solid #cfd8e6;
+    border-radius: 50px;
+    background: #f8fbff;
+    transition: 0.25s;
+}
+
+.input-field:focus,
+.select-field:focus {
+    outline: none;
+    border-color: #6c83f3;
+    box-shadow: 0 0 8px rgba(108, 131, 243, 0.35);
+}
+
+.emph{
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+.emph .input-field{
+    width:250px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    background: #0A1A4F;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.login-btn:hover {
+    background: #263771;
+  transform: translateY(-2px);
+}
+
+.login-link {
+    padding-top: 15px;
+    margin-bottom: -15px;
+  text-align: center;
+  margin-top: -5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-link a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

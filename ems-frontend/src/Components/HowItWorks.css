@@ -1,0 +1,159 @@
+/* ---------- CONTAINER ---------- */
+.how-container {
+  max-width: 1100px;
+  margin: -20px auto;
+  padding: 80px 40px;
+  align-items: center;
+  text-align: center;
+}
+
+.how-title {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 80px;
+  color: #1a1a1a;
+}
+
+/* ---------- TIMELINE ---------- */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: -50px;
+}
+
+/* FULL CONTINUOUS LINE */
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 107, 107, 0.4),
+    rgba(255, 107, 107, 0.4) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+/* ---------- ITEM ---------- */
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* MARKER */
+.marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.step-number {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b, #ff8f8f);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(255, 107, 107, 0.4);
+}
+
+/* ---------- CONTENT ---------- */
+.content {
+  display: flex;
+  gap: 16px;
+  max-width: 420px;
+  align-items: flex-start;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.content:hover{
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  border-radius: 20px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 107, 107, 0.12);
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ---------- SIDES ---------- */
+.timeline-item.right {
+  justify-content: flex-start;
+}
+
+.timeline-item.right .content {
+  margin-left: calc(50% + 50px);
+  text-align: left;
+}
+
+.timeline-item.left {
+  justify-content: flex-end;
+}
+
+.timeline-item.left .content {
+  margin-right: calc(50% + 50px);
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+/* ---------- HOVER ---------- */
+.timeline-item:hover .step-number {
+  transform: scale(1.08);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px;
+  }
+
+  .marker {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    justify-content: flex-start;
+  }
+
+  .content,
+  .timeline-item.left .content {
+    margin: 0 0 0 60px;
+    text-align: left;
+    flex-direction: row;
+  }
+}

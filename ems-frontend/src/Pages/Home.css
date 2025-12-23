@@ -1,0 +1,249 @@
+/* Page Background */
+body {
+    background: linear-gradient(to bottom, #ffffff, #f3f6ff);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+.Hero {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    text-align: center;
+    padding: 0 20px;
+    animation: fadeIn 1.2s ease-out;
+    margin-top: -40px;
+}
+
+.Hero i {
+    color:#FF6B6B;
+}
+
+.Hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1b2653;
+    margin-bottom: 8px;
+}
+
+.Hero p {
+    font-size: 15px;
+    max-width: 600px;
+    color: #4a4a4a;
+    /* line-height: 1.6; */
+}
+
+/* Premium Search Bar */
+.hero-search {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transition: 0.3s ease;
+}
+
+.hero-search:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.hero-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 12px 18px;
+    border-radius: 50px;
+}
+
+.hero-search input::placeholder {
+    color: #a0a0a0;
+}
+
+.hero-search button {
+    padding: 12px 26px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(135deg, #ffa6a6, #FF6B6B);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 5px 16px #FF6B6B88;
+}
+
+.hero-search button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 24px #ff6b6bc0;
+}
+
+.hero-search button:active {
+    transform: scale(0.97);
+}
+
+/* Wave Section */
+.wave-container {
+    margin-top: -100px;
+}
+.wave-container svg {
+    display: block;
+    width: 100%;
+}
+
+.locations-section {
+    padding: 50px 60px;
+    margin-top: -90px;
+}
+
+.locations-section h2 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+
+.category-section {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.category-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 30px;
+  font-family:"Inter", sans-serif;
+  font-weight: 600;
+}
+
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.pill {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  padding: 15px 27px;
+  font-size: 1.1rem;
+  font-family:"Inter", sans-serif;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color:#555;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pill-icon {
+  font-size: 1.2rem;
+}
+
+.pill:hover {
+  border-color: #FF6B6B;
+  color: #FF6B6B;
+  transform: translateY(-2px);
+}
+
+.start-now {
+    /* background: #fff2f2; */
+    background: linear-gradient(to right, rgb(255, 245, 245), rgb(250, 230, 230));
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.05);
+    margin: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.start-now-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:500px;
+}
+
+.start-now h2 {
+    font-size: 2rem;
+    color: #0A1A4F;
+}
+.inside{
+    margin: 30px;
+}
+.start-now p {
+    color: #444;
+}
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0A1A4F;
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    margin-right: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+    background: #ff5252;
+}
+
+
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .Hero h2 {
+        font-size: 36px;
+    }
+
+    .hero-search {
+        padding: 8px;
+    }
+
+    .hero-search button {
+        padding: 10px 18px;
+    }
+}
