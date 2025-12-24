@@ -1,0 +1,75 @@
+.edit-ticket {
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.edit-ticket h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #0f172a;
+}
+
+/* Form */
+.edit-ticket form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Inputs & selects */
+.edit-ticket input,
+.edit-ticket select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.edit-ticket input:focus,
+.edit-ticket select:focus {
+  border-color: #6366f1;
+}
+
+/* Disabled fields */
+.edit-ticket input:disabled {
+  background: #f1f5f9;
+  color: #475569;
+  cursor: not-allowed;
+}
+
+/* Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Buttons */
+.form-actions button {
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+/* Save */
+.form-actions button[type="submit"] {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Cancel */
+.form-actions button[type="button"] {
+  background: #fee2e2;
+  color: #b91c1c;
+}
