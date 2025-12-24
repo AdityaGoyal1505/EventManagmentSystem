@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
@@ -15,6 +15,23 @@ import AdminEditTickets from "./Admin_Dashboard/AdminEditTickets";
 import AdminEditEvent from "./Admin_Dashboard/AdminEditEvent";
 import AdminCreateEvent from "./Admin_Dashboard/AdminCreateEvent";
 import AdminCreateUser from "./Admin_Dashboard/AdminCreateUser";
+
+import OrganizerLayout from "./Organizer_Dashboard/OrganizerLayout";
+import OrganizerDashboard from "./Organizer_Dashboard/OrganizerDashboard";
+import OrganizerEvents from "./Organizer_Dashboard/OrganizerEvents";
+
+const checkAdmin = () =>{
+  const user = JSON.parse(localStorage.getItem("user"));
+  const admin = user?.role;
+  return admin === "Admin";
+}
+
+const checkOrganizer = () =>{
+  const user = JSON.parse(localStorage.getItem("user"));
+  const organizer = user?.role;
+  return organizer === "Organizer";
+}
+
 function App() {
   return (
     <Router>
@@ -25,7 +42,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<Events />}/>
         <Route path="/Contact" element={<Contact />}/>
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin" element={checkAdmin() ? <AdminLayout /> : <Navigate to="/" replace />}>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="events" element={<AdminEvents />} />
           <Route path="users" element={<AdminUsers />} />
@@ -35,6 +52,14 @@ function App() {
           <Route path="tickets/:id/edit" element={<AdminEditTickets />} />
           <Route path="events/new" element={<AdminCreateEvent />} />
           <Route path="users/new" element={<AdminCreateUser />} />
+        </Route>
+        <Route path="/organizer" element={checkOrganizer() ? <OrganizerLayout /> : <Navigate to="/" replace />}>
+          <Route path="dashboard" element={<OrganizerDashboard />} />
+          <Route path="events" element={<OrganizerEvents />} />
+          {/* <Route path="tickets" element={<OrganizerTickets />} /> */}
+          {/* <Route path="events/:id/edit" element={<OrganizerEditEvent />} /> */}
+          {/* <Route path="tickets/:id/edit" element={<OrganizerEditTickets />} /> */}
+          {/* <Route path="events/new" element={<OrganizerCreateEvent />} /> */}
         </Route>
       </Routes>
     </Router>

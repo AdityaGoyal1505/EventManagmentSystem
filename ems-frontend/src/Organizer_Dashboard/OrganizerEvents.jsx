@@ -1,47 +1,42 @@
-import { useEffect, useState } from "react";
-import "./AdminEvents.css";
-import { useNavigate } from "react-router-dom";
+import './OrganizerEvents.css';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const AdminEvents = () => {
-  const [events, setEvents] = useState([]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    fetch("http://localhost:8080/api/events")
-      .then(res => res.json())
-      .then(data => setEvents(data));
-  }, []);
+export default function OrganizerEvents() {
+    const navigate = useNavigate();
+    const [events, setEvents] = useState([]);
+    const users = JSON.parse(localStorage.getItem("user"));
+    const organizerId = users?.id 
 
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this event? This action cannot be undone."
-    );
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/events/organizer/${organizerId}`)
+          .then(res => res.json())
+          .then(data => setEvents(data));
+    },[organizerId]);
+    
+    const handleDelete = async (id) =>{
+        const confirm = window.confirm("Are you sure you want to delete this event?");
+        if(!confirm) return;
+        try{
+            const res = await fetch(`http://localhost:8080/api/events/${id}`,
+                {
+                    method:'DELETE'
+                }
+            );
 
-    if (!confirmed) return;
+            if (!res.ok) {
+                throw new Error("Failed to delete event");
+            }
 
-    try {
-      const res = await fetch(
-        `http://localhost:8080/api/events/${id}`,
-        {
-          method: "DELETE",
+            setEvents(prev => prev.filter(event => event.id !== id));
+        }catch(err){
+            alert("Failed to delete event. Try again.");
+            console.error(err);
+            return;
         }
-      );
-
-      if (!res.ok) {
-        throw new Error("Failed to delete event");
-      }
-
-      // Remove event from UI without refetch
-      setEvents(prev => prev.filter(event => event.id !== id));
-
-      alert("Event deleted successfully");
-    } catch (err) {
-      console.error(err);
-      alert("Failed to delete event. Try again.");
     }
-  };
-
-  return (
-    <div className="admin-events">
+    return (
+        <div className="admin-events">
       <div className="events-header">
         <h2>Manage Events</h2>
         <button className="create-btn" onClick={() => navigate(`/admin/events/new`)}>+ Create Event</button>
@@ -77,7 +72,7 @@ const AdminEvents = () => {
             <span className="actions">
               <button
                 className="edit"
-                onClick={() => navigate(`/admin/events/${event.id}/edit`)}
+                onClick={() => navigate(`/organizer/events/${event.id}/edit`)}
                 >
                 Edit
               </button>
@@ -92,7 +87,5 @@ const AdminEvents = () => {
         ))}
       </div>
     </div>
-  );
-};
-
-export default AdminEvents;
+    )
+}

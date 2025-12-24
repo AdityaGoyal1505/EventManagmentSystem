@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AdminEvents.css";
+import "./AdminTickets.css";
 
 const AdminTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -77,7 +77,7 @@ useEffect(() => {
   {paymentStatuses[ticket.id] || "PENDING"}
 </span>
 
-            <div className="actions">
+            <div className="action">
               <button className="edit" onClick={() => navigate(`/admin/tickets/${ticket.id}/edit`)}>
                 Edit
               </button>
