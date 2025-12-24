@@ -19,6 +19,10 @@ import AdminCreateUser from "./Admin_Dashboard/AdminCreateUser";
 import OrganizerLayout from "./Organizer_Dashboard/OrganizerLayout";
 import OrganizerDashboard from "./Organizer_Dashboard/OrganizerDashboard";
 import OrganizerEvents from "./Organizer_Dashboard/OrganizerEvents";
+import OrganizerTickets from "./Organizer_Dashboard/OrganizerTickets";
+import OrganizerEditEvent from "./Organizer_Dashboard/OrganizerEditEvent";
+import OrganizerEditTickets from "./Organizer_Dashboard/OrganizerEditTicket";
+import OrganizerCreateEvent from "./Organizer_Dashboard/OrganizerCreateEvent";
 
 const checkAdmin = () =>{
   const user = JSON.parse(localStorage.getItem("user"));
@@ -56,10 +60,10 @@ function App() {
         <Route path="/organizer" element={checkOrganizer() ? <OrganizerLayout /> : <Navigate to="/" replace />}>
           <Route path="dashboard" element={<OrganizerDashboard />} />
           <Route path="events" element={<OrganizerEvents />} />
-          {/* <Route path="tickets" element={<OrganizerTickets />} /> */}
-          {/* <Route path="events/:id/edit" element={<OrganizerEditEvent />} /> */}
-          {/* <Route path="tickets/:id/edit" element={<OrganizerEditTickets />} /> */}
-          {/* <Route path="events/new" element={<OrganizerCreateEvent />} /> */}
+          <Route path="tickets" element={<OrganizerTickets />} />
+          <Route path="events/:id/edit" element={<OrganizerEditEvent />} />
+          <Route path="tickets/:id/edit" element={<OrganizerEditTickets />} />
+          <Route path="events/new" element={<OrganizerCreateEvent />} />
         </Route>
       </Routes>
     </Router>

@@ -36,10 +36,10 @@ export default function OrganizerEvents() {
         }
     }
     return (
-        <div className="admin-events">
+        <div className="organizer-events">
       <div className="events-header">
         <h2>Manage Events</h2>
-        <button className="create-btn" onClick={() => navigate(`/admin/events/new`)}>+ Create Event</button>
+        <button className="create-btn-org" onClick={() => navigate(`/organizer/events/new`)}>+ Create Event</button>
       </div>
 
       <div className="events-table">

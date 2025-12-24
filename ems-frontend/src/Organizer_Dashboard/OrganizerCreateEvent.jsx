@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AdminCreate.css";
+import "./OrganizerCreate.css";
 
 const CATEGORY_MAP = {
   Technology: 1,
@@ -11,7 +11,7 @@ const CATEGORY_MAP = {
   "Live Show": 6
 };
 
-const AdminCreateEvent = () => {
+const OrganizerCreateEvent = () => {
   const navigate = useNavigate();
 
   const [event, setEvent] = useState({
@@ -112,4 +112,4 @@ const AdminCreateEvent = () => {
   );
 };
 
-export default AdminCreateEvent;
+export default OrganizerCreateEvent;
