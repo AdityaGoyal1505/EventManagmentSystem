@@ -16,6 +16,10 @@
   margin: 0;
 }
 
+.logo:hover{
+  cursor:pointer;
+}
+
 /* Navigation */
 .nav-tabs {
   display: flex;

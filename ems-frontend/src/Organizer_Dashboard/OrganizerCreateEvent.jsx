@@ -68,7 +68,7 @@ const OrganizerCreateEvent = () => {
 
     if (res.ok) {
       alert("Event created successfully");
-      navigate("/admin/events");
+      navigate("/organizer/events");
     } else {
       alert("Failed to create event");
     }

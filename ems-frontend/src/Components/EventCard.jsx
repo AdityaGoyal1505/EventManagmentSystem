@@ -1,6 +1,8 @@
 import "./EventCard.css";
+import { useNavigate } from "react-router-dom";
 
 const EventCard = ({ event, featured = false }) => {
+  const navigate = useNavigate();
   return (
     <div className={`event-card ${featured ? "featured" : ""}`}>
       
@@ -17,7 +19,7 @@ const EventCard = ({ event, featured = false }) => {
           {event.title}
         </h3>
 
-        <p className="event-description">
+        <p className="event-description-card">
           {event.description}
         </p>
 
@@ -29,7 +31,7 @@ const EventCard = ({ event, featured = false }) => {
             </span>
           </div>
 
-          <button className="event-btn">View Event</button>
+          <button className="event-btn" onClick={() => navigate(`/events/${event.id}`)}>View Event</button>
         </div>
       </div>
 

@@ -5,6 +5,8 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Events from "./Pages/Events";
 import Contact from "./Pages/Contact";
+import EventDetails from "./Pages/EventDetails";
+
 import AdminLayout from "./Admin_Dashboard/AdminLayout";
 import AdminEvents from "./Admin_Dashboard/AdminEvents";
 import AdminUsers from "./Admin_Dashboard/AdminUsers";
@@ -45,6 +47,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<Events />}/>
+        <Route path="/events/:id" element={<EventDetails />} />
         <Route path="/Contact" element={<Contact />}/>
         <Route path="/admin" element={checkAdmin() ? <AdminLayout /> : <Navigate to="/" replace />}>
           <Route path="dashboard" element={<AdminDashboard />} />

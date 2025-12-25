@@ -98,21 +98,21 @@ export default function Home() {
 
             <WhyFestora />
             <HowItWorks />
-            <TopEvents />
-            {/* <section className="start-now">
+            {/* <TopEvents /> */}
+            <section className="start-now">
                 <div className="start-now-content">
                     <div className='inside'>
                     <h2>Start Now</h2>
-                    <p>Launch your event in minutes with our streamlined setup flow.</p>
+                    <p>Discover events and manage tickets with ease</p>
                     </div>
                     <div className='outside'>
-                    <button className="primary-btn">
+                    <button className="primary-btn-start" onClick={() => (window.location.href = "/")}>
                     <PlayCircle size={20} />
                     Get Started
                     </button>
                     </div>
                 </div>
-            </section> */}
+            </section>
             <Footer />
         </>
     )

@@ -63,7 +63,7 @@ const OrganizerEditTicket = () => {
       }
 
       alert("Ticket & payment updated");
-      navigate("/admin/tickets");
+      navigate("/organizer/tickets");
 
     } catch {
       alert("Update failed");

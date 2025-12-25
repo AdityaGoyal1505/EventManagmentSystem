@@ -64,7 +64,7 @@ const OrganizerEditEvent = () => {
 
     if (res.ok) {
       alert("Event updated successfully");
-      navigate("/admin/events");
+      navigate("/organizer/events");
     } else {
       alert("Failed to update event");
     }
@@ -177,7 +177,7 @@ const OrganizerEditEvent = () => {
           <button
             type="button"
             className="cancel"
-            onClick={() => navigate("/admin/events")}
+            onClick={() => navigate("/organizer/events")}
           >
             Cancel
           </button>

@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <header className="header">
       {/* Logo */}
-      <h1 className="logo">Festora</h1>
+      <h1 className="logo" onClick={() => (window.location.href = "/")}>Festora</h1>
       <div className="right-section">
         <nav className="nav-tabs">
             <a href="/" className="tab">Home</a>
