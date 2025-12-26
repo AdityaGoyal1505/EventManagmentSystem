@@ -26,6 +26,10 @@ import OrganizerEditEvent from "./Organizer_Dashboard/OrganizerEditEvent";
 import OrganizerEditTickets from "./Organizer_Dashboard/OrganizerEditTicket";
 import OrganizerCreateEvent from "./Organizer_Dashboard/OrganizerCreateEvent";
 
+import UserLayout from "./User_Dashboard/UserLayout";
+import UserTickets from "./User_Dashboard/UserTickets";
+import UserSettings from "./User_Dashboard/UserSettings";
+
 const checkAdmin = () =>{
   const user = JSON.parse(localStorage.getItem("user"));
   const admin = user?.role;
@@ -36,6 +40,12 @@ const checkOrganizer = () =>{
   const user = JSON.parse(localStorage.getItem("user"));
   const organizer = user?.role;
   return organizer === "Organizer";
+}
+
+const checkUser =() =>{
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userRole=user?.role;
+  return userRole==="User";
 }
 
 function App() {
@@ -67,6 +77,10 @@ function App() {
           <Route path="events/:id/edit" element={<OrganizerEditEvent />} />
           <Route path="tickets/:id/edit" element={<OrganizerEditTickets />} />
           <Route path="events/new" element={<OrganizerCreateEvent />} />
+        </Route>
+        <Route path="/user" element={checkUser() ? <UserLayout /> : <Navigate to="/" replace />}>
+          <Route path="tickets" element={<UserTickets />} />
+          <Route path="settings" element={<UserSettings />} />
         </Route>
       </Routes>
     </Router>
