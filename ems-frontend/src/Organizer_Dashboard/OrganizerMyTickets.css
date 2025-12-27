@@ -1,0 +1,93 @@
+.admin-events {
+  padding: 32px;
+}
+
+/* Header */
+.admin-events h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* Table wrapper */
+.events-table-manage {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid rows */
+.table-head-manage,
+.table-row-manage {
+  display: grid;
+  grid-template-columns: 2fr 2.5fr 1fr 1.2fr 1.4fr;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+/* Header row */
+.table-head-manage {
+  background: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Data rows */
+.table--manage {
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.table-row-manage:hover {
+  background: #f9fafb;
+}
+
+/* Status pill */
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  width: fit-content;
+}
+
+/* Payment states */
+.status.published {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.draft {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Actions */
+/* .action {
+  display: flex;
+  gap: 10px;
+}
+
+.action button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+} */
+
+/* Edit */
+/* .action .edit {
+  background: #e0f2fe;
+  color: #0369a1;
+} */
+
+/* Delete */
+/* .action .delete {
+  background: #fee2e2;
+  color: #b91c1c;
+} */

@@ -123,7 +123,7 @@ const UserSettings = () => {
           placeholder="Phone Number"
         />
 
-        <button className="primary-btn" onClick={saveProfile}>
+        <button className="primary-btn-set" onClick={saveProfile}>
           Save Profile
         </button>
       </div>
@@ -156,7 +156,7 @@ const UserSettings = () => {
           placeholder="Confirm New Password"
         />
 
-        <button className="secondary-btn" onClick={changePassword}>
+        <button className="secondary-btn-set" onClick={changePassword}>
           Update Password
         </button>
       </div>

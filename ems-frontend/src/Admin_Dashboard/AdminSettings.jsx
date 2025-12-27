@@ -84,11 +84,11 @@ const AdminSettings = () => {
   if (loading) return <p>Loading account settings...</p>;
 
   return (
-    <div className="settings-page">
+    <div className="settings-page-admin">
       <h2>Account Settings</h2>
 
       {/* Profile Section */}
-      <div className="settings-card">
+      <div className="settings-card-admin">
         <h3>Profile Information</h3>
 
         <input
@@ -123,13 +123,13 @@ const AdminSettings = () => {
           placeholder="Phone Number"
         />
 
-        <button className="primary-btn" onClick={saveProfile}>
+        <button className="primary-btn-set" onClick={saveProfile}>
           Save Profile
         </button>
       </div>
 
       {/* Password Section */}
-      <div className="settings-card">
+      <div className="settings-card-admin">
         <h3>Change Password</h3>
 
         <input
@@ -156,7 +156,7 @@ const AdminSettings = () => {
           placeholder="Confirm New Password"
         />
 
-        <button className="secondary-btn" onClick={changePassword}>
+        <button className="secondary-btn-set" onClick={changePassword}>
           Update Password
         </button>
       </div>

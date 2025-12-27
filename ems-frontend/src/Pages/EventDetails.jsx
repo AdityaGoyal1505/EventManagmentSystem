@@ -8,7 +8,7 @@ import Footer from "../Components/Footer";
 const EventDetails = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
-
+    console.log("Event ID:", id);
   useEffect(() => {
     fetch(`http://localhost:8080/api/events/${id}`)
       .then(res => res.json())
@@ -52,9 +52,9 @@ const EventDetails = () => {
         </div>
         {/* <div className="cta-card"> */}
         <button
-            className="book-btn"
+            className="book-botton"
             disabled={!event.published}
-            onClick={() => alert("Proceed to ticket booking")}
+            onClick={() => window.location.href = `/book-tickets/${event.id}`}
         >
             {event.published ? "🎟 Book Ticket" : "Not Available"}
         </button>

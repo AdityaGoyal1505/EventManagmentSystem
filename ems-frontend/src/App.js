@@ -17,6 +17,7 @@ import AdminEditTickets from "./Admin_Dashboard/AdminEditTickets";
 import AdminEditEvent from "./Admin_Dashboard/AdminEditEvent";
 import AdminCreateEvent from "./Admin_Dashboard/AdminCreateEvent";
 import AdminCreateUser from "./Admin_Dashboard/AdminCreateUser";
+import BookTickets from "./Pages/BookTickets";
 
 import OrganizerLayout from "./Organizer_Dashboard/OrganizerLayout";
 import OrganizerDashboard from "./Organizer_Dashboard/OrganizerDashboard";
@@ -25,6 +26,7 @@ import OrganizerTickets from "./Organizer_Dashboard/OrganizerTickets";
 import OrganizerEditEvent from "./Organizer_Dashboard/OrganizerEditEvent";
 import OrganizerEditTickets from "./Organizer_Dashboard/OrganizerEditTicket";
 import OrganizerCreateEvent from "./Organizer_Dashboard/OrganizerCreateEvent";
+import OrganizerMyTickets from "./Organizer_Dashboard/OrgainzerMyTickets";
 
 import UserLayout from "./User_Dashboard/UserLayout";
 import UserTickets from "./User_Dashboard/UserTickets";
@@ -59,6 +61,8 @@ function App() {
         <Route path="/events" element={<Events />}/>
         <Route path="/events/:id" element={<EventDetails />} />
         <Route path="/Contact" element={<Contact />}/>
+        <Route path="/book-tickets/:id" element={<BookTickets />} />
+
         <Route path="/admin" element={checkAdmin() ? <AdminLayout /> : <Navigate to="/" replace />}>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="events" element={<AdminEvents />} />
@@ -74,6 +78,7 @@ function App() {
           <Route path="dashboard" element={<OrganizerDashboard />} />
           <Route path="events" element={<OrganizerEvents />} />
           <Route path="tickets" element={<OrganizerTickets />} />
+          <Route path="mytickets" element={<OrganizerMyTickets/>} />
           <Route path="events/:id/edit" element={<OrganizerEditEvent />} />
           <Route path="tickets/:id/edit" element={<OrganizerEditTickets />} />
           <Route path="events/new" element={<OrganizerCreateEvent />} />

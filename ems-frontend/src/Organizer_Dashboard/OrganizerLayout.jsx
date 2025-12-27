@@ -12,6 +12,7 @@ const AdminLayout = () => {
 
         <nav className="organizer-nav">
           <NavLink to="/organizer/dashboard">Dashboard</NavLink>
+          <NavLink to="/organizer/mytickets">My Tickets</NavLink>
           <NavLink to="/organizer/events">Events</NavLink>
           <NavLink to="/organizer/tickets">Tickets</NavLink>
           <NavLink to="/organizer/settings">Settings</NavLink>

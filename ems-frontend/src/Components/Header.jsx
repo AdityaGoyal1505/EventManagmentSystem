@@ -65,7 +65,7 @@ export default function Header() {
             <div className="dropdown-menu">
               <div
                 className="dropdown-item"               
-                onClick={() => navigate(`/${user.role}/dashboard`)}
+                onClick={() => {if(user.role=== "Admin" || user.role==="Organizer") navigate(`/${user.role}/dashboard`); else if(user.role==="User" ) navigate(`/user/tickets`);}}
               >
                 Dashboard
               </div>

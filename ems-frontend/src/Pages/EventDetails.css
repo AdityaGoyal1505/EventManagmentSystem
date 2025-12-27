@@ -98,7 +98,7 @@
   justify-content: center;
 }
 
-.book-btn {
+.book-botton {
   padding: 12px 24px;
   font-size: 15px;
   font-weight: 600;
@@ -111,12 +111,12 @@
 }
 
 
-.book-btn:hover:not(:disabled) {
+.book-botton:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
 }
 
-.book-btn:disabled {
+.book-botton:disabled {
   background: #e5e7eb;
   color: #94a3b8;
   cursor: not-allowed;
