@@ -53,10 +53,10 @@ useEffect(() => {
   };
 
   return (
-    <div className="admin-events">
+    <div className="admin-ticket">
       <h2>Manage Tickets</h2>
 
-      <div className="events-table">
+      <div className="tickets-table">
         <div className="table-head">
           <span>User</span>
           <span>Event</span>
@@ -73,9 +73,9 @@ useEffect(() => {
             <span>{ticket.quantityAvailable}</span>
             <span>₹{ticket.price}</span>
 
-            <span className={`status ${paymentStatuses[ticket.id] === "SUCCESS" ? "published" : "draft"}`}>
-  {paymentStatuses[ticket.id] || "PENDING"}
-</span>
+            <span className={`status ${paymentStatuses[ticket.id] === "CONFIRMED" ? "confirmed" : "pending"}`}>
+              {paymentStatuses[ticket.id] || "PENDING"}
+            </span>
 
             <div className="action">
               <button className="edit" onClick={() => navigate(`/admin/tickets/${ticket.id}/edit`)}>

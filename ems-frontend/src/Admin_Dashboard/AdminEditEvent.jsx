@@ -24,6 +24,7 @@ const AdminEditEvent = () => {
     categoryId: "",
     AmountPerTicket: 0,
     maxAttendees: 0,
+    lastDate: "",
     published: false,
   });
 
@@ -37,6 +38,7 @@ const AdminEditEvent = () => {
           ...data,
           startTime: data.startTime ? data.startTime.slice(0, 16) : "",
           endTime: data.endTime ? data.endTime.slice(0, 16) : "",
+          lastDate: data.lastDate ? data.lastDate.slice(0,16) : "",
           categoryId: Number(data.categoryId || ""),
         });
       });
@@ -65,6 +67,9 @@ const AdminEditEvent = () => {
     if (res.ok) {
       alert("Event updated successfully");
       navigate("/admin/events");
+      console.log("Payload being sent:", {
+        published: event.published,
+      });
     } else {
       alert("Failed to update event");
     }
@@ -119,6 +124,15 @@ const AdminEditEvent = () => {
             type="datetime-local"
             name="endTime"
             value={event.endTime}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Last Date for Tickets
+          <input
+            type="datetime-local"
+            name="lastDate"
+            value={event.lastDate}
             onChange={handleChange}
           />
         </label>

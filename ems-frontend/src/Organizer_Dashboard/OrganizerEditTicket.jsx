@@ -8,6 +8,8 @@ const OrganizerEditTicket = () => {
 
   const [ticket, setTicket] = useState(null);
   const [payments, setPayments] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState("MANUAL");
+  const [referenceNote, setReferenceNote] = useState("");
   const [selectedPaymentId, setSelectedPaymentId] = useState(null);
   const [status, setStatus] = useState("PENDING");
 
@@ -26,6 +28,8 @@ const OrganizerEditTicket = () => {
           const latest = data[data.length - 1];
           setSelectedPaymentId(latest.id);
           setStatus(latest.status);
+          setPaymentMethod(latest.method || "MANUAL");
+          setReferenceNote(latest.referenceNote || "");
         }
       });
   }, [id]);
@@ -57,7 +61,11 @@ const OrganizerEditTicket = () => {
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status })
+            body: JSON.stringify({ 
+              status,
+              method: paymentMethod,
+              referenceNote
+            })
           }
         );
       }
@@ -101,8 +109,27 @@ const OrganizerEditTicket = () => {
 
         <select value={status} onChange={e => setStatus(e.target.value)}>
           <option value="PENDING">Pending</option>
-          <option value="SUCCESS">Success</option>
+          <option value="CONFIRMED">Confirmed</option>
+          <option value="FAILED">Failed</option>
+          <option value="REFUNDED">Refunded</option>
         </select>
+
+        <select
+          value={paymentMethod}
+          onChange={(e) => setPaymentMethod(e.target.value)}
+        >
+          <option value="MANUAL">Manual</option>
+          <option value="UPI">UPI</option>
+          <option value="CARD">Card</option>
+          <option value="NETBANKING">Net Banking</option>
+        </select>
+
+        <input
+          type="text"
+          placeholder="Payment reference / remark"
+          value={referenceNote}
+          onChange={(e) => setReferenceNote(e.target.value)}
+        />
 
         <div className="form-actions">
           <button type="submit">Save</button>
