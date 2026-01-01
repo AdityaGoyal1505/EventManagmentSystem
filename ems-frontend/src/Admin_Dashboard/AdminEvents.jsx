@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
 import "./AdminEvents.css";
 import { useNavigate } from "react-router-dom";
-
 const AdminEvents = () => {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
@@ -40,10 +40,25 @@ const AdminEvents = () => {
     }
   };
 
+  const downloadXlsx = () => {
+      // Convert JSON → worksheet
+      const worksheet = XLSX.utils.json_to_sheet(events);
+  
+      // Create workbook
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Events");
+  
+      // Download file
+      XLSX.writeFile(workbook, "events.xlsx");
+    };
+
   return (
     <div className="admin-events">
       <div className="events-header">
         <h2>Manage Events</h2>
+        <button onClick={downloadXlsx} className="download-btn">
+          Download Events (XLSX)
+        </button>
         <button className="create-btn" onClick={() => navigate(`/admin/events/new`)}>+ Create Event</button>
       </div>
 

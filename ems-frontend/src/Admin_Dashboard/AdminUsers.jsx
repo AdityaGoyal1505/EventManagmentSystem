@@ -1,6 +1,7 @@
 import "./AdminUsers.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as XLSX from "xlsx";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -53,10 +54,25 @@ const AdminUsers = () => {
     return <div className="admin-page">Loading users...</div>;
   }
 
+  const downloadXlsx = () => {
+    // Convert JSON → worksheet
+    const worksheet = XLSX.utils.json_to_sheet(users);
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Events");
+
+    // Download file
+    XLSX.writeFile(workbook, "events.xlsx");
+  };
+
   return (
     <div className="admin-page">
       <div className="page-header">
         <h1>Users</h1>
+        <button onClick={downloadXlsx} className="download-btn">
+          Download Users (XLSX)
+        </button>
         <button className="primary-btn" onClick={() => navigate(`/admin/users/new`)}>+ Add User</button>
       </div>
 

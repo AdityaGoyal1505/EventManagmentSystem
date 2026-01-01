@@ -18,8 +18,8 @@
 }
 
 /* Grid rows */
-.table-head,
-.table-row {
+.table-head-ticket,
+.table-row-ticket {
   display: grid;
   grid-template-columns: 2fr 2.5fr 1fr 1.2fr 1.4fr 1.6fr;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 /* Header row */
-.table-head {
+.table-head-ticket {
   background: #f1f5f9;
   font-size: 13px;
   font-weight: 600;
@@ -35,12 +35,12 @@
 }
 
 /* Data rows */
-.table-row {
+.table-row-ticket {
   border-top: 1px solid #e5e7eb;
   font-size: 14px;
 }
 
-.table-row:hover {
+.table-row-ticket:hover {
   background: #f9fafb;
 }
 
@@ -48,10 +48,13 @@
 .status {
   padding: 6px 12px;
   border-radius: 20px;
+  margin-left: -20px;
   font-size: 12px;
   font-weight: 600;
   text-align: center;
   width: fit-content;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Payment states */

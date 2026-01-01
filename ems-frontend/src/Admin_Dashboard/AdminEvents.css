@@ -9,12 +9,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  /* margin-bottom: -2000px; */
 }
 
 .events-header h2 {
   font-size: 22px;
   font-weight: 600;
+  padding-top: 40px;
+  padding-bottom: 0;
+}
+
+.download-btn{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover{
+    background-color: rgb(0, 143, 0);
 }
 
 .create-btn {
@@ -33,6 +50,7 @@
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  margin-top: -20px;
 }
 
 .table-head-event,
