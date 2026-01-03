@@ -7,9 +7,13 @@ const AdminTickets = () => {
   const [tickets, setTickets] = useState([]);
   const navigate = useNavigate();
   const [paymentStatuses, setPaymentStatuses] = useState("PENDING");
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    fetch("http://localhost:8080/api/tickets")
+    fetch("http://localhost:8080/api/tickets",{
+      headers: {
+      Authorization: `Bearer ${token}`,
+      },
+    })
       .then(res => res.json())
       .then(setTickets)
       .catch(() => alert("Failed to load tickets"));
@@ -45,6 +49,7 @@ useEffect(() => {
     if (!window.confirm("Delete this ticket?")) return;
 
     fetch(`http://localhost:8080/api/tickets/${id}`, {
+      
       method: "DELETE"
     })
       .then(() => {

@@ -6,10 +6,25 @@ const AdminEvents = () => {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:8080/api/events")
-      .then(res => res.json())
-      .then(data => setEvents(data));
-  }, []);
+  const token = localStorage.getItem("token");
+
+  fetch("http://localhost:8080/api/events", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return res.json();
+    })
+    .then(data => setEvents(data))
+    .catch(err => {
+      console.error("Failed to load events:", err);
+    });
+}, []);
+
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
@@ -19,12 +34,18 @@ const AdminEvents = () => {
     if (!confirmed) return;
 
     try {
+      const token = localStorage.getItem("token");
+
       const res = await fetch(
         `http://localhost:8080/api/events/${id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+
 
       if (!res.ok) {
         throw new Error("Failed to delete event");

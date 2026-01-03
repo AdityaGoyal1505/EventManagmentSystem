@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
@@ -32,11 +34,18 @@ import UserLayout from "./User_Dashboard/UserLayout";
 import UserTickets from "./User_Dashboard/UserTickets";
 import UserSettings from "./User_Dashboard/UserSettings";
 
-const checkAdmin = () =>{
-  const user = JSON.parse(localStorage.getItem("user"));
-  const admin = user?.role;
-  return admin === "Admin";
-}
+const checkAdmin = () => {
+  const token = localStorage.getItem("token");
+  if (!token) return false;
+
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.role === "Admin";
+  } catch (e) {
+    console.error("Invalid token", e);
+    return false;
+  }
+};
 
 const checkOrganizer = () =>{
   const user = JSON.parse(localStorage.getItem("user"));

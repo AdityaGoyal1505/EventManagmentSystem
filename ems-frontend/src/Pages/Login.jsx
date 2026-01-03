@@ -8,36 +8,43 @@ export default function Login() {
 //   const [role, setRole] = useState("attendee");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    // Fetch users from API to check username
-    fetch("http://localhost:8080/api/users/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-        username: username, 
-        password: password
-    })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Login successful:", data);
-      if (!data.success) {
-        setError(data.message);
-      } else {
-        localStorage.setItem("user", JSON.stringify({
-          id: data.id,
-          name: data.name,
-          role: data.role
-        }));
+    try {
+      const res = await fetch("http://localhost:8080/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      });
 
-        window.location.href = "/";
+      if (!res.ok) {
+        const err = await res.text();
+        setError(err || "Invalid credentials");
+        return;
       }
-    })
-    .catch(err => setError("Something went wrong"));
+
+      const data = await res.json();
+
+      if (!data.token) {
+        setError("Token not received");
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role",data.role);
+      localStorage.setItem("username",data.username);
+      window.location.href = "/";
+
+    } catch (err) {
+      setError("Server not reachable");
+    }
   };
+
 
   return (
     <>
