@@ -36,8 +36,8 @@ export default function Login() {
       }
 
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role",data.role);
-      localStorage.setItem("username",data.username);
+      // localStorage.setItem("role",data.role);
+      // localStorage.setItem("username",data.sub);
       window.location.href = "/";
 
     } catch (err) {

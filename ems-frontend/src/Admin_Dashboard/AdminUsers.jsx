@@ -8,6 +8,7 @@ const AdminUsers = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
   // Fetch users from backend
   useEffect(() => {
     fetchUsers();
@@ -15,9 +16,15 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/users");
+      const res = await fetch("http://localhost:8080/api/users",{
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+      });
       if (!res.ok) throw new Error("Failed to fetch users");
-
       const data = await res.json();
       setUsers(data);
     } catch (err) {

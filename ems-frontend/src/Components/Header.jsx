@@ -20,7 +20,7 @@ export default function Header() {
       const decoded = jwtDecode(token);
 
       setUser({
-        name: decoded.sub,
+        username: decoded.sub,
         role: decoded.role
       });
     } catch (err) {
@@ -66,7 +66,7 @@ export default function Header() {
           >
             <div className="user-info">
               <span className="role-badge">{user.role}</span>
-              <span className="username">{user.name}</span>
+              <span className="username">{user.username}</span>
             </div>
 
             {menuOpen && (

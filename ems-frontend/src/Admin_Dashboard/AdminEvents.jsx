@@ -5,15 +5,20 @@ import { useNavigate } from "react-router-dom";
 const AdminEvents = () => {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
+  const token=localStorage.getItem("token");
   useEffect(() => {
-  const token = localStorage.getItem("token");
+  if (!token) return; // guard clause
 
   fetch("http://localhost:8080/api/events", {
+    method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
     },
+    credentials: "include",
   })
     .then(res => {
+      console.log("TOKEN BEING SENT:", token);
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
@@ -23,7 +28,8 @@ const AdminEvents = () => {
     .catch(err => {
       console.error("Failed to load events:", err);
     });
-}, []);
+}, [token]);
+
 
 
   const handleDelete = async (id) => {
