@@ -18,7 +18,6 @@ const AdminEvents = () => {
     credentials: "include",
   })
     .then(res => {
-      console.log("TOKEN BEING SENT:", token);
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }

@@ -35,7 +35,11 @@ useEffect(() => {
 
   const fetchPaymentStatus = async (ticketId) => {
   try {
-    const res = await fetch(`http://localhost:8080/api/payments/ticket/${ticketId}`);
+    const res = await fetch(`http://localhost:8080/api/payments/ticket/${ticketId}`,{
+      headers: {
+      Authorization: `Bearer ${token}`,
+      },
+    });
     if (!res.ok) throw new Error("Failed to fetch payment");
     const data = await res.json();
     return data[0]?.status ?? "PENDING";
@@ -45,18 +49,26 @@ useEffect(() => {
   }
 };
 
-  const handleDelete = (id) => {
-    if (!window.confirm("Delete this ticket?")) return;
+  const handleDelete = async (id) => {
+  if (!window.confirm("Delete this ticket?")) return;
 
-    fetch(`http://localhost:8080/api/tickets/${id}`, {
-      
-      method: "DELETE"
-    })
-      .then(() => {
-        setTickets(prev => prev.filter(t => t.id !== id));
-      })
-      .catch(() => alert("Delete failed"));
-  };
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(`http://localhost:8080/api/tickets/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    alert("Delete failed");
+    return;
+  }
+
+  setTickets(prev => prev.filter(t => t.id !== id));
+};
+
 
 const downloadXlsx = (tickets) => {
   if (!tickets || tickets.length === 0) {

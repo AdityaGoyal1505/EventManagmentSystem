@@ -44,7 +44,12 @@ const AdminUsers = () => {
     try {
       const res = await fetch(
         `http://localhost:8080/api/users/${id}`,
-        { method: "DELETE" }
+        { 
+          method: "DELETE",
+          headers: {
+          Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (!res.ok) throw new Error("Delete failed");
