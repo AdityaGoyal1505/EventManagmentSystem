@@ -76,7 +76,7 @@ export default function Header() {
                   onClick={() => {
                     if (user.role === "Admin") {
                       navigate("/admin/dashboard");
-                    } else if (user.role === "Oorganizer") {
+                    } else if (user.role === "Organizer") {
                       navigate("/organizer/dashboard");
                     } else {
                       navigate("/user/tickets");

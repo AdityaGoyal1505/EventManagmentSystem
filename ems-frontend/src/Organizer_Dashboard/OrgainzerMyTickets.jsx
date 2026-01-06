@@ -6,14 +6,17 @@ const OrganizerMyTickets = () => {
   const [tickets, setTickets] = useState([]);
 //   const navigate = useNavigate();
   const [paymentStatuses, setPaymentStatuses] = useState("PENDING");
-    const user=JSON.parse(localStorage.getItem("user"));
-    const userId=user?.id;
+    const token=localStorage.getItem("token");
     useEffect(() => {
-    fetch(`http://localhost:8080/api/tickets/user/${userId}`)
+    fetch(`http://localhost:8080/api/tickets/user/me`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(setTickets)
       .catch(() => alert("Failed to load tickets"));
-  }, [userId]);
+  }, [token]);
 useEffect(() => {
   if (tickets.length === 0) return;
   
@@ -31,7 +34,11 @@ useEffect(() => {
 
   const fetchPaymentStatus = async (ticketId) => {
   try {
-    const res = await fetch(`http://localhost:8080/api/payments/ticket/${ticketId}`);
+    const res = await fetch(`http://localhost:8080/api/payments/ticket/${ticketId}`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     if (!res.ok) throw new Error("Failed to fetch payment");
     const data = await res.json();
     return data[0]?.status ?? "PENDING";

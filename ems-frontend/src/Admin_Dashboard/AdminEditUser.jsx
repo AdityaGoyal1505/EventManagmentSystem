@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const AdminEditUser = () => {
   const { id } = useParams();   // ✅ FIX
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,7 +18,11 @@ const AdminEditUser = () => {
 
   // Fetch user by ID
   useEffect(() => {
-    fetch(`http://localhost:8080/api/users/${id}`)
+    fetch(`http://localhost:8080/api/users/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch user");
         return res.json();
@@ -60,7 +64,10 @@ const AdminEditUser = () => {
         `http://localhost:8080/api/users/${id}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json" 
+          },
           body: JSON.stringify(payload),
         }
       );

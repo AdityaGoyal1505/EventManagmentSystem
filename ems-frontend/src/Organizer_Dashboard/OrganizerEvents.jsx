@@ -3,16 +3,35 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function OrganizerEvents() {
-    const navigate = useNavigate();
-    const [events, setEvents] = useState([]);
-    const users = JSON.parse(localStorage.getItem("user"));
-    const organizerId = users?.id 
+  const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
+  const token = localStorage.getItem("token");
 
-    useEffect(() => {
-        fetch(`http://localhost:8080/api/events/organizer/${organizerId}`)
-          .then(res => res.json())
-          .then(data => setEvents(data));
-    },[organizerId]);
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    fetch("http://localhost:8080/api/events/organizer/me", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(async res => {
+        if (!res.ok) {
+          throw new Error(await res.text());
+        }
+        return res.json();
+      })
+      .then(data => {
+        setEvents(Array.isArray(data) ? data : []);
+      })
+      .catch(err => {
+        console.error(err);
+        setEvents([]);
+      });
+  }, [token, navigate]);
     
     const handleDelete = async (id) =>{
         const confirm = window.confirm("Are you sure you want to delete this event?");
@@ -20,7 +39,10 @@ export default function OrganizerEvents() {
         try{
             const res = await fetch(`http://localhost:8080/api/events/${id}`,
                 {
-                    method:'DELETE'
+                    method:'DELETE',
+                    headers:{
+                      Authorization: `Bearer ${token}`
+                    }
                 }
             );
 

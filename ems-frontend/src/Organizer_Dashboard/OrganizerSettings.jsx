@@ -48,10 +48,14 @@ const OrganizerSettings = () => {
   };
 
   const saveProfile = async () => {
-    await fetch(`http://localhost:8080/api/users/${user.id}`, {
+    await fetch(`http://localhost:8080/api/users/me`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(profile)
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json" },
+      body: JSON.stringify(profile),
+      
+
     });
 
     alert("Profile updated successfully");
@@ -65,7 +69,9 @@ const OrganizerSettings = () => {
 
     await fetch(`http://localhost:8080/api/users/change-password`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json" },
       body: JSON.stringify({
         userId: user.id,
         currentPassword: passwords.currentPassword,

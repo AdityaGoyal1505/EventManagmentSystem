@@ -5,7 +5,7 @@ import "./AdminEditTickets.css";
 const AdminEditTickets = () => {
   const { id } = useParams(); // ticketId
   const navigate = useNavigate();
-
+  const token=localStorage.getItem("token");
   const [ticket, setTicket] = useState(null);
   const [payments, setPayments] = useState([]);
   const [selectedPaymentId, setSelectedPaymentId] = useState(null);
@@ -16,12 +16,20 @@ const AdminEditTickets = () => {
 
   useEffect(() => {
     // 1️⃣ Load ticket
-    fetch(`http://localhost:8080/api/tickets/${id}`)
+    fetch(`http://localhost:8080/api/tickets/${id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    })
       .then(res => res.json())
       .then(setTicket);
 
     // 2️⃣ Load payments for ticket
-    fetch(`http://localhost:8080/api/payments/ticket/${id}`)
+    fetch(`http://localhost:8080/api/payments/ticket/${id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setPayments(data);
@@ -45,7 +53,7 @@ const AdminEditTickets = () => {
       // 1️⃣ Update ticket
       await fetch(`http://localhost:8080/api/tickets/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { Authorization: `Bearer ${token}`,"Content-Type": "application/json" },
         body: JSON.stringify({
           type: ticket.type,
           price: ticket.price,
@@ -59,7 +67,7 @@ const AdminEditTickets = () => {
           `http://localhost:8080/api/payments/status/ticket/${id}`,
           {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { Authorization: `Bearer ${token}`,"Content-Type": "application/json" },
             body: JSON.stringify({
               status,
               method: paymentMethod,

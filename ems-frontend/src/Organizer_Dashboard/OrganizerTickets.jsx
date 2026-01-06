@@ -7,21 +7,30 @@ export default function OrganizerTickets(){
   const [tickets, setTickets] = useState([]);
   const navigate = useNavigate();
   const [paymentStatuses, setPaymentStatuses] = useState("PENDING");
-  const user=JSON.parse(localStorage.getItem("user"));
-  const organizerId=user?.id;
+  // const user=JSON.parse(localStorage.getItem("user"));
+  // const organizerId=user?.id;
+  const token = localStorage.getItem("token");
     useEffect(() => {
-        if (!organizerId) return;
+        if (!token) return;
 
-        fetch(`http://localhost:8080/api/events/organizer/${organizerId}`)
+        fetch(`http://localhost:8080/api/events/organizer/me`,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
             .then(res => res.json())
             .then(data => setEvents(data));
-        }, [organizerId]);
+        }, [token]);
 
     useEffect(() => {
         if (events.length === 0) return;
         Promise.all(
             events.map(e =>
-            fetch(`http://localhost:8080/api/tickets/event/${e.id}`)
+            fetch(`http://localhost:8080/api/tickets/event/${e.id}`,{
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
                 .then(res => res.json())
             )
         ).then(results => {
@@ -47,7 +56,11 @@ export default function OrganizerTickets(){
 
         const fetchPaymentStatus = async (ticketId) => {
         try {
-            const res = await fetch(`http://localhost:8080/api/payments/ticket/${ticketId}`);
+            const res = await fetch(`http://localhost:8080/api/payments/ticket/${ticketId}`,{
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
             if (!res.ok) throw new Error("Failed to fetch payment");
             const data = await res.json();
             return data[0]?.status ?? "PENDING";
@@ -61,7 +74,10 @@ export default function OrganizerTickets(){
     if (!window.confirm("Delete this ticket?")) return;
 
     fetch(`http://localhost:8080/api/tickets/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
       .then(() => {
         setTickets(prev => prev.filter(t => t.id !== id));
