@@ -5,34 +5,51 @@ import "./OrganizerEditTicket.css";
 const OrganizerEditTicket = () => {
   const { id } = useParams(); // ticketId
   const navigate = useNavigate();
-
+  const token=localStorage.getItem("token");
   const [ticket, setTicket] = useState(null);
   const [payments, setPayments] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState("MANUAL");
   const [referenceNote, setReferenceNote] = useState("");
   const [selectedPaymentId, setSelectedPaymentId] = useState(null);
   const [status, setStatus] = useState("PENDING");
-
   useEffect(() => {
-    // 1️⃣ Load ticket
-    fetch(`http://localhost:8080/api/tickets/${id}`)
-      .then(res => res.json())
-      .then(setTicket);
+  const loadData = async () => {
+    try {
+      const ticketRes = await fetch(
+        `http://localhost:8080/api/tickets/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    // 2️⃣ Load payments for ticket
-    fetch(`http://localhost:8080/api/payments/ticket/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setPayments(data);
-        if (data.length) {
-          const latest = data[data.length - 1];
-          setSelectedPaymentId(latest.id);
-          setStatus(latest.status);
-          setPaymentMethod(latest.method || "MANUAL");
-          setReferenceNote(latest.referenceNote || "");
-        }
-      });
-  }, [id]);
+      if (!ticketRes.ok) throw new Error("Failed to load ticket");
+      const ticketData = await ticketRes.json();
+      setTicket(ticketData);
+
+      const paymentRes = await fetch(
+        `http://localhost:8080/api/payments/ticket/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (!paymentRes.ok) throw new Error("Failed to load payments");
+      const paymentData = await paymentRes.json();
+
+      setPayments(paymentData);
+
+      if (paymentData.length) {
+        const latest = paymentData.at(-1);
+        setSelectedPaymentId(latest.id);
+        setStatus(latest.status);
+        setPaymentMethod(latest.method || "MANUAL");
+        setReferenceNote(latest.referenceNote || "");
+        console.log(latest);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  loadData();
+}, [id, token, navigate]);
+
 
   const handleTicketChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +63,9 @@ const OrganizerEditTicket = () => {
       // 1️⃣ Update ticket
       await fetch(`http://localhost:8080/api/tickets/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json" },
         body: JSON.stringify({
           type: ticket.type,
           price: ticket.price,
@@ -60,18 +79,21 @@ const OrganizerEditTicket = () => {
           `http://localhost:8080/api/payments/status/ticket/${id}`,
           {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json" },
             body: JSON.stringify({ 
               status,
               method: paymentMethod,
               referenceNote
             })
           }
+
         );
       }
 
       alert("Ticket & payment updated");
-      navigate("/organizer/tickets");
+      // navigate("/organizer/tickets");
 
     } catch {
       alert("Update failed");
@@ -85,8 +107,8 @@ const OrganizerEditTicket = () => {
       <h2>Edit Ticket</h2>
 
       <form onSubmit={handleSave}>
-        <input value={ticket.user.username} disabled />
-        <input value={ticket.event.title} disabled />
+        <input value={ticket?.user?.username || ""} disabled />
+        <input value={ticket?.event?.title || ""} disabled />
 
         <select name="type" value={ticket.type} onChange={handleTicketChange}>
           <option value="REGULAR">Regular</option>

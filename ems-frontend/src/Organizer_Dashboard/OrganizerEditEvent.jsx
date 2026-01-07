@@ -5,6 +5,7 @@ import "./OrganizerEditEvent.css";
 const OrganizerEditEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const token=localStorage.getItem("token");
   const CATEGORY_OPTIONS = [
     { id: 1, name: "Technology" },
     { id: 2, name: "Arts" },
@@ -57,7 +58,9 @@ const OrganizerEditEvent = () => {
       `http://localhost:8080/api/events/${id}`,
       {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json" },
         body: JSON.stringify(event),
       }
     );

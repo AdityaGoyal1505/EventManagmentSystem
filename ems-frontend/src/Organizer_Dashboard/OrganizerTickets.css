@@ -1,0 +1,116 @@
+.organizer-tickets{
+  padding: 32px;
+  /* background: #f8fafc; */
+  /* min-height: 100vh; */
+}
+
+/* Header */
+.tickets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tickets-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.create-btn-org {
+  background: linear-gradient(180deg,#14be55,#11c455);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Table */
+.tickets-table {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.table-head-tickets,
+.table-row-tickets {
+  display: grid;
+  grid-template-columns: 1.5fr 1.2fr 1.5fr 1.2fr 1.8fr 1.2fr;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.table-head-event {
+  background: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.table-row-event {
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.table-row-event:hover {
+  background: #f9fafb;
+}
+
+.table-row-event .title {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Status */
+.statuus {
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 20px;
+  text-align: center;
+  display: inline-block;
+  margin-left: -50px;
+  margin-right: 50px;
+}
+
+.statuus.confirmed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.statuus.pending {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-left: -15px;
+}
+
+.actions button {
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: -11px;
+  margin-bottom: 11px;
+}
+
+.actions .edit {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.actions .delete {
+  background: #fee2e2;
+  color: #b91c1c;
+}

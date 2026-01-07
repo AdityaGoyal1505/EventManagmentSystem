@@ -4,7 +4,7 @@ import "./AdminCreate.css";
 
 const AdminCreateUser = () => {
   const navigate = useNavigate();
-
+  const token=localStorage.getItem("token");
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -27,7 +27,9 @@ const AdminCreateUser = () => {
 
     const res = await fetch("http://localhost:8080/api/users", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+          Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json" },
       body: JSON.stringify({
         ...user,
         phoneNo: user.phoneNo ? Number(user.phoneNo) : null

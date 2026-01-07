@@ -86,11 +86,11 @@ export default function OrganizerTickets(){
   };
 
   return (
-    <div className="admin-events">
+    <div className="organizer-tickets">
       <h2>Manage Tickets</h2>
 
-      <div className="events-table">
-        <div className="table-head">
+      <div className="tickets-table">
+        <div className="table-head-tickets">
           <span>User</span>
           <span>Event</span>
           <span>Qty</span>
@@ -100,13 +100,13 @@ export default function OrganizerTickets(){
         </div>
 
                 {tickets.map(ticket => (
-                <div className="table-row" key={ticket.id}>
+                <div className="table-row-tickets" key={ticket.id}>
                     <span>{ticket.user.username}</span>
                     <span>{ticket.event.title}</span>
                     <span>{ticket.quantityAvailable}</span>
                     <span>₹{ticket.price}</span>
 
-                    <span className={`status ${paymentStatuses[ticket.id] === "SUCCESS" ? "published" : "draft"}`}>
+                    <span className={`statuus ${paymentStatuses[ticket.id] === "CONFIRMED" ? "confirmed" : "pending"}`}>
         {paymentStatuses[ticket.id] || "PENDING"}
         </span>
 

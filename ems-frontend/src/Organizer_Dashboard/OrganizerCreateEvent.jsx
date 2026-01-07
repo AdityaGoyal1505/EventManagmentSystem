@@ -13,7 +13,7 @@ const CATEGORY_MAP = {
 
 const OrganizerCreateEvent = () => {
   const navigate = useNavigate();
-
+  const token=localStorage.getItem("token");
   const [event, setEvent] = useState({
     title: "",
     description: "",
@@ -38,39 +38,44 @@ const OrganizerCreateEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    const organizerId = user?.id;
-
-    if (!organizerId) {
-    alert("Organizer not logged in");
-    return;
+    if (!token) {
+      alert("Not authenticated");
+      return;
     }
 
     const payload = {
       title: event.title,
       description: event.description,
       location: event.location,
-      startTime: event.startTime + ":00",
-      endTime: event.endTime + ":00",
+      startTime: `${event.startTime}:00`,
+      endTime: `${event.endTime}:00`,
       amountPerTicket: Number(event.amountPerTicket),
       maxAttendees: Number(event.maxAttendees),
       published: event.published,
-      organizerId: organizerId,
       categoryId: CATEGORY_MAP[event.categoryName],
       venueName: event.venueName
     };
 
-    const res = await fetch("http://localhost:8080/api/events/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    try {
+      const res = await fetch("http://localhost:8080/api/events/create", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
 
-    if (res.ok) {
+      if (!res.ok) {
+        const msg = await res.text();
+        throw new Error(msg || "Failed to create event");
+      }
+
       alert("Event created successfully");
-      navigate("/organizer/events");
-    } else {
-      alert("Failed to create event");
+      navigate("/admin/events");
+
+    } catch (err) {
+      alert(err.message);
     }
   };
 
