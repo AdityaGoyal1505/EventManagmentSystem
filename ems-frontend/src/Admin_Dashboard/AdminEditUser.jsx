@@ -59,6 +59,7 @@ const AdminEditUser = () => {
       role: formData.role, // matches backend
     };
 
+    
     try {
       const res = await fetch(
         `http://localhost:8080/api/users/${id}`,
