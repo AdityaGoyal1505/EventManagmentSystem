@@ -10,19 +10,30 @@ const Events = () => {
   const [category, setCategory] = useState("All");
   const [location, setLocation] = useState("All");
   const [price, setPrice] = useState("All");
-
+  // const navigate = useNavigate();
+  const token=localStorage.getItem("token");
   useEffect(() => {
-    async function getEvents() {
-      try {
-        const res = await fetch("http://localhost:8080/api/events");
-        if (!res.ok) throw new Error();
-        setEvents(await res.json());
-      } catch {
-        setEvents(events); // fallback dummy data
+  if (!token) return; // guard clause
+
+  fetch("http://localhost:8080/api/events", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
       }
-    }
-    getEvents();
-  }, []);
+      return res.json();
+    })
+    .then(data => setEvents(data))
+    .catch(err => {
+      console.error("Failed to load events:", err);
+    });
+}, [token]);
+
 
   const filteredEvents = events.filter(event => {
     return (

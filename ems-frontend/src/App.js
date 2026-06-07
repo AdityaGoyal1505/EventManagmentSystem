@@ -61,9 +61,16 @@ const checkOrganizer = () =>{
 }
 
 const checkUser =() =>{
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userRole=user?.role;
-  return userRole==="User";
+  const token = localStorage.getItem("token");
+  if (!token) return false;
+
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.role === "User";
+  } catch (e) {
+    console.error("Invalid token", e);
+    return false;
+  }
 }
 
 function App() {

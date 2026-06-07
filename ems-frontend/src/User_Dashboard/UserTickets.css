@@ -1,9 +1,9 @@
-.admin-events {
+.user-events {
   padding: 32px;
 }
 
 /* Header */
-.admin-events h2 {
+.user-events h2 {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 24px;
@@ -55,12 +55,12 @@
 }
 
 /* Payment states */
-.status.published {
+.status.confirmed {
   background: #dcfce7;
   color: #15803d;
 }
 
-.status.draft {
+.status.pending {
   background: #fee2e2;
   color: #b91c1c;
 }

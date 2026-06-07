@@ -56,7 +56,7 @@ const AdminEditUser = () => {
       name: formData.name,
       email: formData.email,
       phoneNo: formData.phoneNo,
-      role: { name: formData.role }, // matches backend
+      role: formData.role, // matches backend
     };
 
     try {

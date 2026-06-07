@@ -5,6 +5,7 @@ import "./AdminEditEvent.css";
 const AdminEditEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const CATEGORY_OPTIONS = [
     { id: 1, name: "Technology" },
     { id: 2, name: "Arts" },
@@ -22,7 +23,7 @@ const AdminEditEvent = () => {
     startTime: "",
     endTime: "",
     categoryId: "",
-    AmountPerTicket: 0,
+    amountPerTicket: 0,
     maxAttendees: 0,
     lastDate: "",
     published: false,
@@ -59,7 +60,10 @@ const AdminEditEvent = () => {
       `http://localhost:8080/api/events/${id}`,
       {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json" ,
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(event),
       }
     );
